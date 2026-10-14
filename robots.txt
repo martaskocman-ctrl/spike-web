@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://spikedigital.cz/sitemap.xml
