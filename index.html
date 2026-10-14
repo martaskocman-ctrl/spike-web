@@ -561,6 +561,10 @@ dialog.inq[open]::backdrop{animation:fadeBd .6s ease}
 .tile-c.wide .tb{grid-template-columns:auto 1fr;align-items:center}
 
 
+.fmeta a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.fmeta a:hover{color:var(--fg)}
+.privacy-note{margin:14px 0 0;font-size:13px;color:#8d8ca3;text-align:center}
+.privacy-note a{color:inherit}
 footer{padding-block:40px 56px;color:var(--muted);font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:28px}
 
@@ -925,7 +929,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
 <footer>
   <div class="wrap">
     <a class="logo" href="#top"><canvas class="logo-mark" data-orb="logo" aria-hidden="true"></canvas><span class="wm">spike<em>digital</em></span></a>
-    <span>© 2026 Spike Digital · weby &amp; marketing</span>
+    <span class="fmeta">© 2026 Spike Digital · Martin Kocman · <a href="/ochrana-osobnich-udaju/">Ochrana osobních údajů</a></span>
   </div>
 </footer>
 
@@ -945,6 +949,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
         <input type="checkbox" name="botcheck" id="i-bot" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
         <button class="send3" type="submit" id="inq-send">Chci, abyste se ozvali</button>
       </form>
+      <p class="privacy-note">Údaje použijeme jen k odpovědi na poptávku. <a href="/ochrana-osobnich-udaju/" target="_blank" rel="noopener">Ochrana osobních údajů</a></p>
       <a class="callmini" href="tel:+420733483424"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Nebo zavolejte: 733 483 424</a>
     </div>
     <div class="done3" id="inq-done" hidden>
