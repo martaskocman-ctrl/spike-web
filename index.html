@@ -8,7 +8,7 @@
 <style>:root{color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Archivo:wdth,wght@75,900&family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Unbounded:wght@300..900&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Unbounded:wght@300..900&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 </head>
 <body>
 <style>
@@ -545,59 +545,6 @@ dialog.inq[open]::backdrop{animation:fadeBd .6s ease}
 .tile-c.wide .tb{grid-template-columns:auto 1fr;align-items:center}
 
 
-/* ---------- portfolio ---------- */
-.works{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media (max-width:900px){.works{grid-template-columns:1fr}}
-.work{display:flex;flex-direction:column;text-decoration:none;color:var(--fg);border:1px solid var(--line);border-radius:24px;background:var(--bg-2);overflow:hidden;
-  transition:border-color .6s, transform .8s cubic-bezier(.16,1,.3,1)}
-.work:hover{transform:translateY(-5px);border-color:#3a3a50}
-.wp{position:relative;aspect-ratio:16/11;overflow:hidden;border-bottom:1px solid var(--line)}
-.wp .bar{position:absolute;inset:0 0 auto;height:22px;display:flex;align-items:center;gap:5px;padding:0 10px;background:rgba(0,0,0,.18);z-index:2}
-.wp .bar i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55)}
-.wp .in{position:absolute;inset:22px 0 0;padding:18px 18px 0;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
-.work:hover .wp .in{transform:scale(1.04)}
-.wp small{display:inline-block;font-size:10px;font-weight:600;padding:3px 8px;border-radius:999px}
-.wp b{display:block;margin:10px 0 8px;line-height:1}
-.wp .ln{display:block;height:5px;border-radius:3px;margin-top:6px;opacity:.45}
-.wp .pill{display:inline-block;margin-top:12px;font-size:10px;font-weight:600;padding:6px 12px;border-radius:999px}
-/* kavarna */
-.wp.k{background:#fbf6ea;color:#1d3b2c}
-.wp.k .bar{background:#1d3b2c}
-.wp.k small{background:#f6d365}
-.wp.k b{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(26px,3vw,34px);letter-spacing:-.03em}
-.wp.k b span{background:linear-gradient(transparent 62%,#f6d365 62%)}
-.wp.k .ln{background:#1d3b2c;width:70%}.wp.k .ln+.ln{width:50%}
-.wp.k .pill{background:#1d3b2c;color:#fbf6ea}
-.wp.k .orb{position:absolute;right:-26px;bottom:-30px;width:46%;aspect-ratio:1;border-radius:50%;background:#1d3b2c}
-.wp.k .orb::after{content:"";position:absolute;left:24%;top:30%;width:42%;height:34%;background:#fbf6ea;border-radius:0 0 46% 46%/0 0 60% 60%}
-/* autoservis */
-.wp.a{background:#141619;color:#f1f2f4}
-.wp.a .bar{background:repeating-linear-gradient(-45deg,#ffcc00 0 8px,#111 8px 16px)}
-.wp.a .bar i{display:none}
-.wp.a small{background:#ffcc00;color:#111;border-radius:4px}
-.wp.a b{font-family:"Archivo",sans-serif;font-stretch:75%;font-weight:900;text-transform:uppercase;font-size:clamp(28px,3.4vw,40px);line-height:.9}
-.wp.a b em{font-style:normal;color:#ffcc00}
-.wp.a .ln{background:#9aa0aa;width:66%}
-.wp.a .pill{background:#ffcc00;color:#111;border-radius:6px;text-transform:uppercase;letter-spacing:.06em}
-.wp.a .gear{position:absolute;right:-30px;bottom:-34px;width:52%;aspect-ratio:1;border-radius:50%;border:18px dashed rgba(255,204,0,.28);animation:rot 30s linear infinite}
-/* salon */
-.wp.s{background:#f6ece8;color:#3d2340}
-.wp.s .bar{background:#3d2340}
-.wp.s small{color:#c98f8a;letter-spacing:.2em;text-transform:uppercase;padding:0;font-weight:500}
-.wp.s b{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,42px)}
-.wp.s b em{color:#c98f8a;font-weight:400}
-.wp.s .ln{background:#7a6670;width:60%}
-.wp.s .pill{background:#3d2340;color:#f6ece8;letter-spacing:.12em;text-transform:uppercase}
-.wp.s .archx{position:absolute;right:16px;bottom:-10px;width:32%;height:72%;border-radius:999px 999px 10px 10px;background:linear-gradient(180deg,#e9c7bf,#c98f8a 60%,#8f5c6a)}
-.wi{padding:20px 22px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
-.wi .tag{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.wi h3{font-family:var(--display);font-weight:700;font-size:21px;margin:0}
-.wi p{margin:0;color:var(--muted);font-weight:300;font-size:15px}
-.wi .go{margin-top:auto;padding-top:12px;font-weight:500;font-size:15px;display:inline-flex;gap:8px}
-.wi .go span{transition:transform .5s cubic-bezier(.16,1,.3,1)}
-.work:hover .wi .go span{transform:translateX(5px)}
-.works-note{margin-top:18px;color:var(--muted);font-size:14px;font-weight:300}
-
 footer{padding-block:40px 56px;color:var(--muted);font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:28px}
 
@@ -620,7 +567,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
       <li><a href="#proces">Jak pracujeme</a></li>
       <li><a href="#weby">Weby</a></li>
       <li><a href="#marketing">Marketing</a></li>
-      <li><a href="#ukazky">Ukázky</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
     <a class="btn btn-primary" href="#kontakt" data-inq="">Chci web</a>
@@ -905,34 +851,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
         <p><strong>Web + marketing výhodněji.</strong> Když si k webu vezmete i péči o marketing, připravíme vám zvýhodněnou nabídku.</p>
         <a class="btn" href="#kontakt" data-inq="">Probrat <span class="arr">→</span></a>
       </div>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  <section id="ukazky">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <div>
-          <div class="eyebrow">Ukázky</div>
-          <h2>Jak můžou vypadat weby od nás</h2>
-        </div>
-        <p>Každý web navrhujeme na míru oboru a stylu firmy. Prohlédněte si ukázky, klidně i na mobilu.</p>
-      </div>
-      <div class="works">
-        <a class="work rv" href="ukazky/kavarna/" target="_blank" rel="noopener">
-          <div class="wp k" aria-hidden="true"><div class="bar"><i></i><i></i><i></i></div><div class="in"><small>Výběrová káva</small><b>Káva, která stojí <span>za zastávku</span></b><span class="ln"></span><span class="ln"></span><span class="pill">Prohlédnout menu</span></div><span class="orb"></span></div>
-          <div class="wi"><span class="tag">Kavárna · bistro</span><h3>Kavárna Zrnko</h3><p>Útulný web s menu po kategoriích, otevírací dobou a mapou.</p><span class="go">Prohlédnout ukázku <span>→</span></span></div>
-        </a>
-        <a class="work rv" href="ukazky/autoservis/" target="_blank" rel="noopener">
-          <div class="wp a" aria-hidden="true"><div class="bar"><i></i></div><div class="in"><small>Kolín</small><b>Opravíme to<br><em>napoprvé.</em></b><span class="ln"></span><span class="pill">Objednat termín</span></div><span class="gear"></span></div>
-          <div class="wi"><span class="tag">Autoservis · řemeslo</span><h3>Autoservis Hájek</h3><p>Výrazný web se službami, cenami a objednáním termínu online.</p><span class="go">Prohlédnout ukázku <span>→</span></span></div>
-        </a>
-        <a class="work rv" href="ukazky/salon/" target="_blank" rel="noopener">
-          <div class="wp s" aria-hidden="true"><div class="bar"><i></i><i></i><i></i></div><div class="in"><small>Kosmetika · Kadeřnictví</small><b>Chvíle jen<br><em>pro vás</em></b><span class="ln"></span><span class="pill">Rezervovat</span></div><span class="archx"></span></div>
-          <div class="wi"><span class="tag">Kosmetika · kadeřnictví</span><h3>Studio Lumi</h3><p>Elegantní web s ceníkem služeb, týmem a rezervací.</p><span class="go">Prohlédnout ukázku <span>→</span></span></div>
-        </a>
-      </div>
-      <p class="works-note">Ukázky jsou koncepty pro smyšlené firmy. Váš web bude navržený přesně pro vás.</p>
     </div>
   </section>
 
