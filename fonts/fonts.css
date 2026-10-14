@@ -1,0 +1,6 @@
+/* Písma hostovaná přímo na webu (SIL Open Font License, viz OFL-licence.txt) */
+@font-face{font-family:"Unbounded";src:url("unbounded.woff") format("woff");font-weight:200 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Outfit";src:url("outfit.woff") format("woff");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"JetBrains Mono";src:url("jetbrains-mono.woff") format("woff");font-weight:400 500;font-style:normal;font-display:swap}
+@font-face{font-family:"Fraunces";src:url("fraunces.woff") format("woff");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Fraunces";src:url("fraunces-italic.woff") format("woff");font-weight:600;font-style:italic;font-display:swap}
