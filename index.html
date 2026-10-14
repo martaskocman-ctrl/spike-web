@@ -425,6 +425,12 @@ dialog.inq[open]::backdrop{animation:fadeBd .6s ease}
 .svc2 input:checked + span{background:#fff;color:#07070b;border-color:#fff;transform:translateY(-1px)}
 .svc2 input:checked + span::before{background:#07070b;box-shadow:none}
 .svc2 input:focus-visible + span{outline:2px solid var(--c2);outline-offset:2px}
+.picked{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;padding:14px 16px;border-radius:18px;background:rgba(62,224,143,.08);border:1px solid rgba(62,224,143,.35)}
+.picked span{font-size:15px;color:#a9e9c6}
+.picked b{display:inline-flex;align-items:center;gap:8px;font-size:18px;font-weight:600}
+.picked b::after{content:"✓";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#3ee08f;color:#06140d;font-size:13px}
+.picked button{background:none;border:0;color:var(--muted);font:400 15px var(--body);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px}
+.picked button:hover{color:var(--fg)}
 .fl{display:grid;gap:4px}
 .fl > span{font-size:15px;color:#a9a8bb}
 .fl input{width:100%;font:400 18px/1.45 var(--body);background:transparent;border:0;border-bottom:2px solid #34344a;padding:10px 2px;color:var(--fg);border-radius:0;transition:border-color .4s}
@@ -919,9 +925,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
     <canvas data-orb="modal" aria-hidden="true"></canvas>
     <div id="inq-form-wrap">
       <h2 id="inq-h">Ozveme se vám</h2>
-      <p class="sub">Vyberte, co vás zajímá, a nechte nám kontakt. Zavoláme nebo napíšeme.</p>
+      <p class="sub" id="inq-sub">Vyberte, co vás zajímá, a nechte nám kontakt. Zavoláme nebo napíšeme.</p>
       <form id="inq-form" novalidate>
-        <div class="svc-q"><span>Co vás zajímá? Můžete vybrat víc.</span><div class="svc2" id="svc2"><label><input type="checkbox" value="Nový web" id="sv0"><span style="--g:var(--c2)">Nový web</span></label><label><input type="checkbox" value="Předělání webu" id="sv1"><span style="--g:var(--c4)">Předělání webu</span></label><label><input type="checkbox" value="E-shop" id="sv2"><span style="--g:var(--c3)">E-shop</span></label><label><input type="checkbox" value="Sociální sítě" id="sv3"><span style="--g:var(--c4)">Sociální sítě</span></label><label><input type="checkbox" value="Reklamy" id="sv4"><span style="--g:var(--c3)">Reklamy</span></label><label><input type="checkbox" value="Správa webu" id="sv5"><span style="--g:var(--c5)">Správa webu</span></label></div></div>
+        <div class="picked" id="picked" hidden><span>Máte zájem o:</span><b id="picked-name"></b><button type="button" id="picked-edit">Změnit</button></div>
+        <div class="svc-q" id="svc-q"><span>Co vás zajímá? Můžete vybrat víc.</span><div class="svc2" id="svc2"><label><input type="checkbox" value="Nový web" id="sv0"><span style="--g:var(--c2)">Nový web</span></label><label><input type="checkbox" value="Předělání webu" id="sv1"><span style="--g:var(--c4)">Předělání webu</span></label><label><input type="checkbox" value="E-shop" id="sv2"><span style="--g:var(--c3)">E-shop</span></label><label><input type="checkbox" value="Sociální sítě" id="sv3"><span style="--g:var(--c4)">Sociální sítě</span></label><label><input type="checkbox" value="Reklamy" id="sv4"><span style="--g:var(--c3)">Reklamy</span></label><label><input type="checkbox" value="Správa webu" id="sv5"><span style="--g:var(--c5)">Správa webu</span></label></div></div>
         <label class="fl" id="f-name"><span>Vaše jméno</span><input id="i-name" autocomplete="name"><small class="err"></small></label>
         <label class="fl" id="f-contact"><span>Telefon nebo e-mail</span><input id="i-contact" autocomplete="tel"><small class="err"></small></label>
         <input type="checkbox" name="botcheck" id="i-bot" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
@@ -1168,9 +1175,23 @@ function SpikeOrb(cv, opt){
   document.getElementById('inq-ok').addEventListener('click', function(){ dlg.close(); });
   var MAP = {'Vizitka':['Nový web'],'Firemní web':['Nový web'],'E-shop / funkce na míru':['E-shop'],'Předělání starého webu':['Předělání webu'],
              'Správa webu':['Správa webu'],'Sociální sítě':['Sociální sítě'],'Sítě + reklamy':['Sociální sítě','Reklamy']};
+  var LABEL = {'Vizitka':'Vizitka','Firemní web':'Firemní web','E-shop / funkce na míru':'E-shop a funkce','Předělání starého webu':'Předělání webu',
+               'Správa webu':'Správa webu','Sociální sítě':'Sociální sítě','Sítě + reklamy':'Sociální sítě + reklamy'};
+  var picked = document.getElementById('picked'), svcQ = document.getElementById('svc-q'), sub = document.getElementById('inq-sub');
+  var pickedLabel = '';
+  function showPicker(){ picked.hidden = true; svcQ.hidden = false; pickedLabel = '';
+    sub.textContent = 'Vyberte, co vás zajímá, a nechte nám kontakt. Zavoláme nebo napíšeme.'; }
+  document.getElementById('picked-edit').addEventListener('click', showPicker);
   function open(svc){
     wrap.hidden = false; done.hidden = true;
-    (MAP[svc] || []).forEach(function(v){ boxes.forEach(function(b){ if (b.value === v) b.checked = true; }); });
+    boxes.forEach(function(b){ b.checked = false; });
+    if (LABEL[svc]) {
+      (MAP[svc] || []).forEach(function(v){ boxes.forEach(function(b){ if (b.value === v) b.checked = true; }); });
+      pickedLabel = LABEL[svc];
+      document.getElementById('picked-name').textContent = pickedLabel;
+      picked.hidden = false; svcQ.hidden = true;
+      sub.textContent = 'Stačí jméno a kontakt. Ozveme se vám a vše probereme.';
+    } else { showPicker(); }
     dlg.showModal();
   }
   document.querySelectorAll('[data-inq]').forEach(function(el){
@@ -1188,7 +1209,7 @@ function SpikeOrb(cv, opt){
     setErr('f-name', name ? '' : 'Napište prosím své jméno.');
     setErr('f-contact', (isMail || isPhone) ? '' : (contact ? 'Zkontrolujte prosím telefon nebo e-mail.' : 'Napište telefon nebo e-mail, ať se vám můžeme ozvat.'));
     if (!name || !(isMail || isPhone)) { var f = form.querySelector('.bad input'); if (f) f.focus(); return; }
-    var svc = boxes.filter(function(b){ return b.checked; }).map(function(b){ return b.value; });
+    var svc = pickedLabel ? [pickedLabel] : boxes.filter(function(b){ return b.checked; }).map(function(b){ return b.value; });
     var subject = 'Poptávka z webu – ' + name + (svc.length ? ' (' + svc.join(', ') + ')' : '');
     var body = 'Dobrý den,\n\nprosím, ozvěte se mi.\n\n' +
       'Zajímá mě: ' + (svc.length ? svc.join(', ') : 'zatím nevím, poraďte') + '\n' +
